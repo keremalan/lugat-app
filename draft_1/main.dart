@@ -77,7 +77,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
   Widget buildBodyWidget() {
-    return gridView();
+    return Column(
+      children: [
+        Text('Yazı'),
+        Expanded(
+          child:gridView(),
+        ),
+      ]
+    );
   }
 
   Widget gridView() {
