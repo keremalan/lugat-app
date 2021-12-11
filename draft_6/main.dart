@@ -9,6 +9,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Lügat',
+      initialRoute: '/',
+      routes: {
+        '/technology': (context) => const TechCategory(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,34 +34,34 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text("Lügat"),
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text("Lügat"),
+      ),
+      child: CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Ana Sayfa",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark),
+              label: "Favorilerim",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profil",
+            )
+          ],
         ),
-        child: CupertinoTabScaffold(
-          tabBar: CupertinoTabBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Ana Sayfa",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark),
-                label: "Favorilerim",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profil",
-              )
-            ],
-          ),
-          tabBuilder: (context, index) {
-            return CupertinoTabView(
-              builder: (context) {
-                return data[index];
-              },
-            );
-          },
-        ),
+        tabBuilder: (context, index) {
+          return CupertinoTabView(
+            builder: (context) {
+              return data[index];
+            },
+          );
+        },
+      ),
     );
   }
 }
