@@ -72,7 +72,7 @@ class HomeTab extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/tech');
+            Navigator.pushNamed(context, '/technology');
           },
           child: const Text(
             "Ana Sayfa",
