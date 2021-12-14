@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 void main() { runApp(MyApp()); }
 
-TermCategories term1 = TermCategories(0, 'Teknoloji', 'Teknoloji ile alakalı terimler', 'url');
+TermCategories term1 = TermCategories(0, 0, 'Teknoloji', 'Teknoloji ile alakalı terimler', 'url');
 
 List <TermCategories> categoryList = [
-  TermCategories(0,'Teknoloji', 'Teknoloji ile alakalı terimler','https://www.upload.ee/image/13711001/griditem__1_.png'),
-  TermCategories(1,'Tasarım', 'Tasarım ile alakalı terimler','https://www.upload.ee/image/13711049/griditem__5_.png'),
-  TermCategories(2,'Yazılım', 'Yazılım ile alakalı terimler','https://www.upload.ee/image/13711172/griditem__7_.png'),
-  TermCategories(3,'Yapay Zeka', 'Yapay Zeka ile alakalı terimler','https://www.upload.ee/image/13711150/griditem__6_.png'),
+  TermCategories(0, 0, 'Teknoloji', 'Teknoloji ile alakalı terimler','https://www.upload.ee/image/13711001/griditem__1_.png'),
+  TermCategories(1, 0, 'Tasarım', 'Tasarım ile alakalı terimler','https://www.upload.ee/image/13711049/griditem__5_.png'),
+  TermCategories(2, 0, 'Yazılım', 'Yazılım ile alakalı terimler','https://www.upload.ee/image/13711172/griditem__7_.png'),
+  TermCategories(3, 0, 'Yapay Zeka', 'Yapay Zeka ile alakalı terimler','https://www.upload.ee/image/13711150/griditem__6_.png'),
 ];
 
 Term term0 = Term(0, 'Metaverse', 'Açıklama', 'url');
@@ -701,11 +701,12 @@ class CatList extends StatelessWidget {
 
 class Term {
   int id;
+  int catId;
   String name;
   String description;
   String imagePath;
 
-  Term(this.id, this.name, this.description, this.imagePath);
+  Term(this.id, this.catId, this.name, this.description, this.imagePath);
 }
 
 
