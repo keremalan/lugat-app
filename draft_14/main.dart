@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 
 void main() { runApp(MyApp()); }
 
-TermCategories term1 = TermCategories(0, 'Teknoloji', 'Teknoloji ile alakalı terimler', 'url');
+TermCategory term1 = TermCategory(0, 'Teknoloji', 'Teknoloji ile alakalı terimler', 'url');
 
-List <TermCategories> categoryList = [
-  TermCategories(0,'Teknoloji', 'Teknoloji ile alakalı terimler','https://www.upload.ee/image/13711001/griditem__1_.png'),
-  TermCategories(1,'Tasarım', 'Tasarım ile alakalı terimler','https://www.upload.ee/image/13711049/griditem__5_.png'),
-  TermCategories(2,'Yazılım', 'Yazılım ile alakalı terimler','https://www.upload.ee/image/13711172/griditem__7_.png'),
-  TermCategories(3,'Yapay Zeka', 'Yapay Zeka ile alakalı terimler','https://www.upload.ee/image/13711150/griditem__6_.png'),
+List <TermCategory> categoryList = [
+  TermCategory(1,'Teknoloji', 'Teknoloji ile alakalı terimler','https://www.upload.ee/image/13711001/griditem__1_.png'),
+  TermCategory(2,'Tasarım', 'Tasarım ile alakalı terimler','https://www.upload.ee/image/13711049/griditem__5_.png'),
+  TermCategory(3,'Yazılım', 'Yazılım ile alakalı terimler','https://www.upload.ee/image/13711172/griditem__7_.png'),
+  TermCategory(4,'Yapay Zeka', 'Yapay Zeka ile alakalı terimler','https://www.upload.ee/image/13711150/griditem__6_.png'),
 ];
 
 Term term0 = Term(0, 0, 'Metaverse', 'Açıklama', 'url');
 
 List <Term> termList = [
-  Term(0, 0, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
-  Term(1, 0, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
-  Term(2, 0, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
-  Term(3, 0, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
+  Term(1, 1, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
+  Term(2, 1, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
+  Term(3, 1, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
+  Term(4, 1, 'Metaverse', 'Açıklama', 'https://www.upload.ee/image/13716801/metaverse.jpeg'),
 ];
 
 class MyApp extends StatelessWidget {
@@ -29,10 +29,6 @@ class MyApp extends StatelessWidget {
       title: 'Lügat',
       initialRoute: '/',
       routes: {
-        '/technology': (context) => const TechCategory(),
-        '/design': (context) => const DesignCategory(),
-        '/software': (context) => const SoftwareCategory(),
-        '/ai': (context) => const AiCategory(),
         '/catlist': (context) => const CatList(),
         '/term': (context) => const TermPage(),
       },
@@ -53,7 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> data = [HomeTab(), BookmarkTab(), ProfileTab(), TechCategory(), DesignCategory(), SoftwareCategory(), AiCategory(), CatList(),];
+  List<Widget> data = [HomeTab(), BookmarkTab(), ProfileTab(), CatList(),];
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -101,193 +97,113 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Padding(
-        padding: EdgeInsets.only(top: 140),
-        child: Column(
-          children: <Widget> [
-            Padding(
-              padding: EdgeInsets.only(bottom: 48),
-              child: Column(
-                children: const <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: Text(
-                      "lügat",
-                      style: TextStyle(
-                        fontFamily: 'AbrilFatface',
-                        fontSize: 72,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 0),
-                    child: Text(
-                      "Terimler sözlüğü.",
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 300,
-              height: 90,
-              child: Padding(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(top: 140),
+          child: Column(
+            children: <Widget>[
+              Padding(
                 padding: EdgeInsets.only(bottom: 48),
-                child: CupertinoSearchTextField(
-                  placeholder: "Aramak istediğiniz terimi girin",
-                  onChanged: (String value) {
-                    print('The text has changed to: $value');
-                  },
-                  onSubmitted: (String value) {
-                    print('Submitted text: $value');
-                  },
+                child: Column(
+                  children: const <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 16),
+                      child: Text(
+                        "lügat",
+                        style: TextStyle(
+                          fontFamily: 'AbrilFatface',
+                          fontSize: 72,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 0),
+                      child: Text(
+                        "Terimler sözlüğü.",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => TechCategory())
-                      );
+              SizedBox(
+                width: 300,
+                height: 90,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 48),
+                  child: CupertinoSearchTextField(
+                    placeholder: "Aramak istediğiniz terimi girin",
+                    onChanged: (String value) {
+                      print('The text has changed to: $value');
                     },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 32),
-                      child: Column(
+                    onSubmitted: (String value) {
+                      print('Submitted text: $value');
+                    },
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 2,
+                            crossAxisSpacing: 14),
+                    itemCount: categoryList.length,
+                    itemBuilder: (context, index) {
+                      return Column(
                         children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Image.network(
-                              "https://www.upload.ee/image/13711001/griditem__1_.png",
-                              height: 130,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 6),
-                            child: Text(
-                              "Teknoloji",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CategoryDetail(
+                                        termCategory: categoryList[index]),
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: Image.network(
+                                      '${categoryList[index].imagePath}',
+                                      height: 140,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      categoryList[index].name,
+                                      style: const TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
+                          )
                         ],
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => DesignCategory())
                       );
                     },
-                    child: Column(
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.network(
-                            "https://www.upload.ee/image/13711049/griditem__5_.png",
-                            height: 130,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 6),
-                          child: Text(
-                            "Tasarım",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => SoftwareCategory())
-                    );
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 32),
-                    child: Column(
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.network(
-                            "https://www.upload.ee/image/13711172/griditem__7_.png",
-                            height: 130,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 6),
-                          child: Text(
-                            "Yazılım",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => AiCategory())
-                    );
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Image.network(
-                          "https://www.upload.ee/image/13711150/griditem__6_.png",
-                          height: 130,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 6),
-                        child: Text(
-                          "Yapay Zeka",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -346,271 +262,11 @@ class ProfileTab extends StatelessWidget {
   }
 }
 
-class TechCategory extends StatelessWidget {
-  const TechCategory({Key? key}) : super(key: key);
+class CategoryDetail extends StatelessWidget {
+  final TermCategory termCategory;
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height,
-        child: Row(
-          children: <Widget>[
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 450),
-                  ),
-                  Padding(
-                  padding: EdgeInsets.only(left: 119),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      textStyle: TextStyle(
-                        fontSize: 19,
-                      ),
-                    ),
-                    child: Text('Kayıtlı terimlerim'),
-                    onPressed: () {
-                      showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(
-                            height: 600,
-                            color: Colors.white30,
-                              child: Column(
-                                children: <Widget>[
-                                  Column(
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(top: 16),
-                                        child:
-                                            Text("Kaydettiklerim",
-                                            style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600,
-                                            )
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: Image.network(
-                                                "https://www.upload.ee/image/13716859/metaverse_1.png",
-                                                height: 60,
-                                                width: 60,
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 54),
-                                                  child: Text(
-                                                    "Metaverse",
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 4, left: 28),
-                                                  child: Text(
-                                                    "Metaverse ile ilgili açıklama",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: Image.network(
-                                                "https://www.upload.ee/image/13716859/metaverse_1.png",
-                                                height: 60,
-                                                width: 60,
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 54),
-                                                  child: Text(
-                                                    "Metaverse",
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 4, left: 28),
-                                                  child: Text(
-                                                    "Metaverse ile ilgili açıklama",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: Image.network(
-                                                "https://www.upload.ee/image/13716859/metaverse_1.png",
-                                                height: 60,
-                                                width: 60,
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 54),
-                                                  child: Text(
-                                                    "Metaverse",
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 4, left: 28),
-                                                  child: Text(
-                                                    "Metaverse ile ilgili açıklama",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: Image.network(
-                                                "https://www.upload.ee/image/13716859/metaverse_1.png",
-                                                height: 60,
-                                                width: 60,
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 54),
-                                                  child: Text(
-                                                    "Metaverse",
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 4, left: 28),
-                                                  child: Text(
-                                                    "Metaverse ile ilgili açıklama",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: Image.network(
-                                                "https://www.upload.ee/image/13716859/metaverse_1.png",
-                                                height: 60,
-                                                width: 60,
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 54),
-                                                  child: Text(
-                                                    "Metaverse",
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 4, left: 28),
-                                                  child: Text(
-                                                    "Metaverse ile ilgili açıklama",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                    textAlign: TextAlign.right,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                        },
-                      );
-                    },
-                  )
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DesignCategory extends StatelessWidget {
-  const DesignCategory({Key? key}) : super(key: key);
+  const CategoryDetail({Key? key, required this.termCategory})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -618,28 +274,27 @@ class DesignCategory extends StatelessWidget {
     return Material(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 100),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(6),
                     image: DecorationImage(
-                      image: NetworkImage(
-                        'https://www.upload.ee/image/13718492/griditem__1_.png',
-                      ),
+                      image: NetworkImage(termCategory.imagePath),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 12, right: 8, left: 16, bottom: 8),
+                    padding: const EdgeInsets.only(
+                        top: 12, right: 8, left: 16, bottom: 8),
                     child: Column(
                       children: [
                         Row(
-                          children: [
+                          children: const [
                             Text(
                               "Günün kelimesi",
                               style: TextStyle(
@@ -650,7 +305,7 @@ class DesignCategory extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          children: [
+                          children: const [
                             Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: Text(
@@ -667,10 +322,10 @@ class DesignCategory extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(top: 230),
+                              padding: const EdgeInsets.only(top: 230),
                               child: Text(
-                                "Tasarım",
-                                style: TextStyle(
+                                termCategory.name,
+                                style: const TextStyle(
                                   fontSize: 36,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
@@ -684,10 +339,11 @@ class DesignCategory extends StatelessWidget {
                             Flexible(
                               fit: FlexFit.loose,
                               child: Padding(
-                                padding: EdgeInsets.only(left: 6, right: 60, bottom: 8),
+                                padding: const EdgeInsets.only(
+                                    left: 6, right: 60, bottom: 8),
                                 child: Text(
-                                    "Kategori ile ilgili açıklama metni detaylı olarak buraya gelecektir.",
-                                  style: TextStyle(
+                                  termCategory.description,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -695,29 +351,30 @@ class DesignCategory extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Divider(
+                        const Divider(
                           color: Colors.white,
                         ),
                         Row(
                           children: [
                             Text(
-                              "Bu kategori $terim terim içeriyor.",
-                              style: TextStyle(
+                              "Bu kategori ${termList.length} terim içeriyor.",
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 60),
+                              padding: const EdgeInsets.only(left: 50),
                               child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
-                                    side: BorderSide(width: 1.0, color: Colors.white),
+                                    side: const BorderSide(
+                                        width: 1.0, color: Colors.white),
                                     primary: Colors.white,
                                     shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                                    )
-                                ),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(30)),
+                                    )),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   "kelime ekle",
                                 ),
                               ),
@@ -730,9 +387,9 @@ class DesignCategory extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 24, bottom: 16),
+                padding: const EdgeInsets.only(left: 24, bottom: 16),
                 child: Row(
-                  children: [
+                  children: const [
                     Text(
                       "Terimler",
                       style: TextStyle(
@@ -771,7 +428,8 @@ class DesignCategory extends StatelessWidget {
                             Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 4, right: 85),
+                                  padding:
+                                      EdgeInsets.only(bottom: 4, right: 85),
                                   child: Text(
                                     "Metaverse",
                                     style: TextStyle(
@@ -782,12 +440,70 @@ class DesignCategory extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                      "Metaverse ile ilgili açıklamalar",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                      )
+                                  child:
+                                      Text("Metaverse ile ilgili açıklamalar",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          )),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 36, left: 36),
+                child: Divider(color: Colors.grey),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 22, right: 22),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: [
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.network(
+                                    "https://www.upload.ee/image/13718541/metaverse_1.png",
+                                    height: 50,
+                                    width: 50,
                                   ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(bottom: 4, right: 85),
+                                  child: Text(
+                                    "Metaverse",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child:
+                                      Text("Metaverse ile ilgili açıklamalar",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          )),
                                 ),
                               ],
                             ),
@@ -830,7 +546,8 @@ class DesignCategory extends StatelessWidget {
                             Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 4, right: 85),
+                                  padding:
+                                      EdgeInsets.only(bottom: 4, right: 85),
                                   child: Text(
                                     "Metaverse",
                                     style: TextStyle(
@@ -841,71 +558,11 @@ class DesignCategory extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                      "Metaverse ile ilgili açıklamalar",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                      )
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 36, left: 36),
-                child: Divider(color: Colors.grey),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 22, right: 22),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Row(
-                          children: [
-                            Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: Image.network(
-                                    "https://www.upload.ee/image/13718541/metaverse_1.png",
-                                    height: 50,
-                                    width: 50,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 4, right: 85),
-                                  child: Text(
-                                    "Metaverse",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                      "Metaverse ile ilgili açıklamalar",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                      )
-                                  ),
+                                  child:
+                                      Text("Metaverse ile ilgili açıklamalar",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          )),
                                 ),
                               ],
                             ),
@@ -947,14 +604,16 @@ class DesignCategory extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => TermPage())
-                                );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => TermPage()));
                               },
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(bottom: 4, right: 85),
+                                    padding:
+                                        EdgeInsets.only(bottom: 4, right: 85),
                                     child: Text(
                                       "Metaverse",
                                       style: TextStyle(
@@ -965,12 +624,11 @@ class DesignCategory extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                        "Metaverse ile ilgili açıklamalar",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        )
-                                    ),
+                                    child:
+                                        Text("Metaverse ile ilgili açıklamalar",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            )),
                                   ),
                                 ],
                               ),
@@ -986,9 +644,8 @@ class DesignCategory extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 120),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => HomeTab())
-                    );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeTab()));
                   },
                   child: const Text(
                     "Ana sayfa'ya dön Tasarım",
@@ -999,60 +656,6 @@ class DesignCategory extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SoftwareCategory extends StatelessWidget {
-  const SoftwareCategory({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height,
-        child: GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) => HomeTab())
-            );
-          },
-          child: const Text(
-            "Ana sayfa'ya dön Yazılım",
-            style: TextStyle(
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AiCategory extends StatelessWidget {
-  const AiCategory({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height,
-        child: GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) => CatList())
-            );
-          },
-          child: const Text(
-            "CatList'e git",
-            style: TextStyle(
-              fontSize: 20,
-            ),
           ),
         ),
       ),
@@ -1317,8 +920,6 @@ class TermPage extends StatelessWidget {
   }
 }
 
-
-
 class Term {
   int id;
   int catId;
@@ -1329,12 +930,11 @@ class Term {
   Term(this.id, this.catId, this.name, this.description, this.imagePath);
 }
 
-
-class TermCategories {
+class TermCategory {
   int id;
   String name;
   String description;
   String imagePath;
 
-  TermCategories(this.id, this.name, this.description, this.imagePath,);
+  TermCategory(this.id, this.name, this.description, this.imagePath,);
 }
